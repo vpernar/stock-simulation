@@ -1,0 +1,64 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+
+option java_package = "rs.raf.grpc";
+
+service StockService {
+  rpc getAllStocks(google.protobuf.Empty) returns (stream StockDto) {}
+  rpc bid(BidRequest) returns (stream BidResponse) {}
+  rpc ask(AskRequest) returns (stream AskResponse) {}
+  rpc order(OrderDto) returns (google.protobuf.Empty){}
+  rpc transactions(TransactionsRequest) returns(stream TransactionsReply){}
+}
+
+message StockDto {
+  string symbol = 1;
+  string company = 2;
+  double lastSale = 3;
+  double change = 4;
+  int64 date = 5;
+}
+
+message OrderDto {
+  string symbol = 1;
+  double price = 2;
+  int32 orderCount = 3;
+  string orderType = 4;
+  int32 connectionId = 5;
+}
+
+message BidRequest {
+  string symbol = 1;
+  int32 bidCount = 2;
+}
+
+message BidResponse {
+  string symbol = 1;
+  double price = 2;
+  int32 bidCount = 3;
+}
+
+message AskRequest{
+  string symbol = 1;
+  int32 askCount = 2 ;
+}
+
+message AskResponse{
+  string symbol = 1;
+  double price = 2;
+  int32 askCount = 3;
+}
+
+message TransactionsRequest{
+  int64 date = 1;
+  string symbol = 2;
+}
+
+message TransactionsReply{
+  string line = 1;
+  int64 date = 2;
+}
+
+
+
