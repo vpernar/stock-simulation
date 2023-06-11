@@ -1,2 +1,2 @@
 # stock-simulation
-Stock application
+Stock application simulation created in order to learn synchronization.
