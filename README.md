@@ -1,0 +1,2 @@
+# stock-simulation
+Stock application
